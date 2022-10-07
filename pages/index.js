@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -9,6 +9,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <main>
+        <h1>Honey Badgers Scrum Poker'e Hoşgeldiniz!</h1>
+      </main>
     </div>
-  )
+  );
 }
