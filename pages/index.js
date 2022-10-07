@@ -9,7 +9,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="bg-black text-white">
         <h1>Honey Badgers Scrum Poker'e Hoşgeldiniz!</h1>
       </main>
     </div>
