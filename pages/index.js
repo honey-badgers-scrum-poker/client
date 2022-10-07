@@ -1,6 +1,31 @@
 import Head from "next/head";
+import React, { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
+import { auth } from "../firebase";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 export default function Home() {
+  const user = useAuth();
+  const [message, setMessage] = useState("");
+
+  const handleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    setMessage(`Welcome ${user.displayName}`);
+  };
+
+ 
+
+  useEffect(() => {
+    if (user) {
+      setMessage(`Welcome ${user.displayName}!`);
+    } else {
+      setMessage("You are not logged in.");
+    }
+  }, [user]);
+
+  console.log(message);
   return (
     <div>
       <Head>
@@ -11,6 +36,16 @@ export default function Home() {
 
       <main className="bg-black text-white">
         <h1>Honey Badgers Scrum Poker&#39;e Hoşgeldiniz!</h1>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            handleLogin();
+          }}
+        >
+          Giriş Yap
+        </button>
+
+        <p>{message}</p>
       </main>
     </div>
   );
