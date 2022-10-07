@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main className="bg-black text-white">
-        <h1>Honey Badgers Scrum Poker'e Hoşgeldiniz!</h1>
+        <h1>Honey Badgers Scrum Poker&#39;e Hoşgeldiniz!</h1>
       </main>
     </div>
   );
