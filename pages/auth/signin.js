@@ -1,4 +1,10 @@
-import { getProviders, signIn, useSession, signOut } from "next-auth/react";
+import {
+  getProviders,
+  signIn,
+  useSession,
+  signOut,
+  getSession,
+} from "next-auth/react";
 
 export default function SignIn({ providers }) {
   const { data: session } = useSession();
@@ -24,9 +30,11 @@ export default function SignIn({ providers }) {
         {Object.values(providers).map((provider) => (
           <div key={provider.name}>
             <button
-              onClick={() => signIn(provider.id,{
-                callbackUrl: "/"
-              })}
+              onClick={() =>
+                signIn(provider.id, {
+                  callbackUrl: "/",
+                })
+              }
               className="p-6 mt-6 text-2xl font-bold text-white bg-blue-500 hover:opacity-95 rounded-lg"
             >
               Sign in with {provider.name}
@@ -38,26 +46,14 @@ export default function SignIn({ providers }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const providers = await getProviders();
+  const session = await getSession(context);
 
   return {
     props: {
       providers,
+      session,
     },
   };
 }
-
-// {Object.values(providers).map((provider) => (
-//     <div key={provider.name}>
-//       <button
-//         onClick={() =>
-//           signIn(provider.id, {
-//             callbackUrl: "/",
-//           })
-//         }
-//       >
-//         Sign in with {provider.name}
-//       </button>
-//     </div>
-//   ))}
