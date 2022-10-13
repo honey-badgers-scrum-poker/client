@@ -38,7 +38,6 @@ export default function Room() {
       />
       <button onClick={createRoom}>Oluştur</button>
       <br />
-      //Join a room
       <br />
       {room && <p>Room ID: {room.roomKey}</p>}
       {room && (
