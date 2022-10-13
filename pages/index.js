@@ -15,6 +15,12 @@ export default function Home() {
         >
           Sign out
         </button>
+
+        <Link href="/room">
+          <a className="p-6 mt-6 text-2xl font-bold text-white bg-blue-500 hover:opacity-95 rounded-lg">
+            Oda Oluştur veya Katıl
+          </a>
+        </Link>
       </div>
     );
   }
