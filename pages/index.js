@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut, getSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -38,4 +38,19 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  // if (session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/dashboard",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
+  return {
+    props: { session },
+  };
 }
