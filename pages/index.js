@@ -1,12 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useSession, signOut, getSession } from "next-auth/react";
+import useAuthentication from "../hooks/auth";
 
 export default function Home() {
+  useAuthentication();
   const { data: session } = useSession();
   if (session) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <div className="flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-6xl font-bold">Hoşgeldin {session.user.name}</h1>
         <img src={session.user.image} alt="profile" />
         <button

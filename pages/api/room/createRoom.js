@@ -18,9 +18,12 @@ export default async function handler(req, res) {
     roomName,
     user,
     createdAt: new Date().toISOString(),
+    isStartedVoting: false,
+    isFinishedVoting: false,
     users: [
       {
-        user
+        user,
+        vote : 0,
       },
     ],
   }).catch((error) => {
