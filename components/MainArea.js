@@ -54,7 +54,7 @@ export default function MainArea({
         <ul className="flex flex-col items-center h-1/2">
           {roomData.users.map(({ user, vote }) => (
             <li
-              key={user.id}
+              key={user.uid}
               className="p-1 px-3 bg-blue-400 w-full rounded-xl"
             >
               <div className="flex items-center space-x-4">

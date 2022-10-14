@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import { db, database } from "../../firebase";
-import { ref, set, onValue, off, update, push, child } from "firebase/database";
+import {
+  ref,
+  set,
+  onValue,
+  off,
+  update,
+  push,
+  child,
+  orderByKey,
+  endAt,
+  limitToLast,
+} from "firebase/database";
 import useAuthentication from "../../hooks/auth";
 import { useSession } from "next-auth/react";
 import Modal from "react-modal";
@@ -17,16 +28,15 @@ export default function RoomId({ roomId }) {
   useEffect(() => {
     const roomRef = ref(database, `rooms/${roomId}`);
     onValue(roomRef, (snapshot) => {
-      const roomData = snapshot.val();
-      setRoomData(roomData);
-      console.log('scket data', roomData)
+      const data = snapshot.val();
+      setRoomData(data);
+      console.log('data', data)
     });
 
     return () => {
       off(roomRef);
     };
   }, []);
-
 
   // Yeni bir kullanıcı girince odaya ekleme
 
