@@ -19,12 +19,14 @@ export default function RoomId({ roomId }) {
     onValue(roomRef, (snapshot) => {
       const roomData = snapshot.val();
       setRoomData(roomData);
+      console.log('scket data', roomData)
     });
 
     return () => {
       off(roomRef);
     };
   }, []);
+
 
   // Yeni bir kullanıcı girince odaya ekleme
 
@@ -55,7 +57,6 @@ export default function RoomId({ roomId }) {
   useEffect(() => {
     if (selectedCard) {
       const userRef = ref(database, `rooms/${roomId}`);
-      console.log("Dışarda ", selectedCard);
       update(userRef, {
         users: roomData.users.map((user) => {
           if (user.user.uid === session.user.uid) {
