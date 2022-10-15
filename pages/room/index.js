@@ -40,6 +40,7 @@ export default function Room() {
 
   return (
     <div className="bg-gray-200 w-full min-h-screen flex flex-col justify-center">
+      {process.env.NEXT_PUBLIC_NEXTAUTH_URL}
       {room ? (
         <div className="bg-white w-4/5 sm:w-3/5 mx-auto p-4 rounded-lg mt-4">
           <h1 className="text-2xl font-bold text-center mb-4">Room Created</h1>
