@@ -23,15 +23,16 @@ export default function RoomId({ roomId }) {
   const [roomData, setRoomData] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
   const { data: session } = useSession();
-  const [isStart, setIsStart] = useState(false);
 
   useEffect(() => {
     const roomRef = ref(database, `rooms/${roomId}`);
-    onValue(roomRef, (snapshot) => {
-      const data = snapshot.val();
-      setRoomData(data);
-      console.log('data', data)
-    });
+
+    if (!roomData) {
+      onValue(roomRef, (snapshot) => {
+        setRoomData(snapshot.val());
+        console.log("snapshot.val()", snapshot.val());
+      });
+    }
 
     return () => {
       off(roomRef);
