@@ -11,6 +11,7 @@ import {
   orderByKey,
   endAt,
   limitToLast,
+  get,
 } from "firebase/database";
 import useAuthentication from "../../hooks/auth";
 import { useSession } from "next-auth/react";
@@ -25,15 +26,23 @@ export default function RoomId({ roomId }) {
 
   const roomRef = ref(database, `rooms/${roomId}`);
 
-  onValue(
-    roomRef,
-    (snapshot) => {
-      setRoomData(snapshot.val());
-    },
-    {
-      onlyOnce: true,
-    }
-  );
+  useEffect(() => {
+    const int = setInterval(() => {
+      get(ref(database, `rooms/${roomId}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          setRoomData(snapshot.val());
+          console.log(snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      });
+    }, 1000);
+
+    return () => {
+      off(ref(database, `rooms/${roomId}`));
+      clearInterval(int);
+    };
+  }, []);
 
   // Yeni bir kullanıcı girince odaya ekleme
 
