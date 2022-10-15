@@ -14,7 +14,6 @@ import {
 } from "firebase/database";
 import useAuthentication from "../../hooks/auth";
 import { useSession } from "next-auth/react";
-import Modal from "react-modal";
 import SideBar from "../../components/SideBar";
 import MainArea from "../../components/MainArea";
 
@@ -26,11 +25,15 @@ export default function RoomId({ roomId }) {
 
   const roomRef = ref(database, `rooms/${roomId}`);
 
-  if (!roomData) {
-    onValue(roomRef, (snapshot) => {
+  onValue(
+    roomRef,
+    (snapshot) => {
       setRoomData(snapshot.val());
-    });
-  }
+    },
+    {
+      onlyOnce: true,
+    }
+  );
 
   // Yeni bir kullanıcı girince odaya ekleme
 
