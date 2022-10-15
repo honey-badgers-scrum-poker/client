@@ -18,14 +18,26 @@ import { getDatabase } from "firebase/database";
 
 // Production
 
+// const firebaseConfig = {
+//   apiKey: process.env.API_KEY,
+//   authDomain: process.env.AUTH_DOMAIN,
+//   projectId: process.env.PROJECT_ID,
+//   storageBucket: process.env.STORAGE_BUCKET,
+//   messagingSenderId: process.env.MESSAGING_SENDER_ID,
+//   appId: process.env.APP_ID,
+//   measurementId: process.env.MEASUREMENT_ID,
+// };
+
+
+// Test 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID,
+  apiKey: 'AIzaSyAAN286CcHuiPEe5Q5G7ot3NSTVe6r7I9M',
+  authDomain: 'honey-badgers-scrum-poker.firebaseapp.com',
+  projectId: 'honey-badgers-scrum-poker',
+  storageBucket: 'honey-badgers-scrum-poker.appspot.com',
+  messagingSenderId: '338587899637',
+  appId: '1:338587899637:web:a6318b57575f980e8557bc',
+  measurementId: 'G-9G0WRFV3DB',
 };
 
 const app = initializeApp(firebaseConfig);
