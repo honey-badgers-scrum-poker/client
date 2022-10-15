@@ -1,22 +1,20 @@
 import cardData from "../helper/cardData";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function MainArea({
   roomId,
   roomData,
-  session,
   selectedCard,
   setSelectedCard,
   startVoting,
   finishVoting,
 }) {
+  const { data: session } = useSession();
   const isAdmin = roomData.user.email === session.user.email;
   const [maddeName, setMaddeName] = useState("");
 
-  console.log("vote", roomData.isStartedVoting);
-
-  console.log(roomData.users);
 
   return (
     <div className="w-2/4 h-full bg-slate-400 p-2">

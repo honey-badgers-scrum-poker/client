@@ -24,20 +24,13 @@ export default function RoomId({ roomId }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const { data: session } = useSession();
 
-  useEffect(() => {
-    const roomRef = ref(database, `rooms/${roomId}`);
+  const roomRef = ref(database, `rooms/${roomId}`);
 
-    if (!roomData) {
-      onValue(roomRef, (snapshot) => {
-        setRoomData(snapshot.val());
-        console.log("snapshot.val()", snapshot.val());
-      });
-    }
-
-    return () => {
-      off(roomRef);
-    };
-  }, []);
+  if (!roomData) {
+    onValue(roomRef, (snapshot) => {
+      setRoomData(snapshot.val());
+    });
+  }
 
   // Yeni bir kullanıcı girince odaya ekleme
 
@@ -78,7 +71,6 @@ export default function RoomId({ roomId }) {
       });
     }
   }, [selectedCard]);
-  const roomRef = ref(database, `rooms/${roomId}`);
 
   const startVoting = () => {
     deleteVotes();
